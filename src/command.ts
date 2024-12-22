@@ -1,4 +1,4 @@
-import { Cell } from "./cell";
+import Cell from "./cell";
 import { exec, ExecException } from 'child_process';
 
 export default class Command implements Cell {
