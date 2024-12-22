@@ -1,5 +1,5 @@
 import Cell from "./cell";
-import { exec, ExecException } from 'child_process';
+import Host from "./host";
 
 export default class Command implements Cell {
     cmd: string;
@@ -9,14 +9,7 @@ export default class Command implements Cell {
         this.args = args;
     }
 
-    Execute(): void {
-        exec(`${this.cmd} ${this.args}`, (err: ExecException | null, stdout: string, stderr: string) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(stdout);
-            console.log(stderr);
-        });
+    Execute(host: Host): void {
+        host.Execute(this.cmd, this.args);
     }
 }
